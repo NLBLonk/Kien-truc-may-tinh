@@ -1,0 +1,113 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+2312678_NLBLong_Lab3Bai2.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 9/6/2024  --  6:20:21 PM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       .stack 100h
+[   3]        :                                       .data
+[   4]    0100: 0A 0D 4E 68 61 70 20 76 61 6F 20 31   TB db 10,13, 'Nhap vao 1 ky tu: $'
+                20 6B 79 20 74 75 3A 20 24          
+[   5]    0115: 0A 0D 4B 79 20 74 75 20 6E 68 61 70   TBKhac db 10,13, 'Ky tu nhap khac chu/so$'
+                20 6B 68 61 63 20 63 68 75 2F 73 6F 
+                24                                  
+[   6]    012E: 0A 0D 4B 79 20 74 75 20 6E 68 61 70   TBChu db 10,13, 'Ky tu nhap la chu !$'
+                20 6C 61 20 63 68 75 20 21 24       
+[   7]    0144: 0A 0D 4B 79 20 74 75 20 6E 68 61 70   TBSo db 10,13, 'Ky tu nhap la so !$'
+                20 6C 61 20 73 6F 20 21 24          
+[   8]        :                                       .code
+[   9]    0160: B8 10 00                              mov ax, @data
+[  10]    0163: 8E D8                                 mov ds,ax
+[  11]        :                                       
+[  12]    0165: B4 09                                 mov ah,9
+[  13]    0167: BA 00 00                              lea dx,TB
+[  14]    016A: CD 21                                 int 21h
+[  15]        :                                       
+[  16]    016C: B4 01                                 mov ah,1
+[  17]    016E: CD 21                                 int 21h
+[  18]        :                                       
+[  19]    0170: 3C 30                                 cmp al,'0'
+[  20]    0172: 72 16                                 jb khac
+[  21]    0174: 3C 39                                 cmp al,'9'
+[  22]    0176: 76 24                                 jbe so
+[  23]    0178: 3C 41                                 cmp al,'A'
+[  24]    017A: 72 0E                                 jb khac
+[  25]    017C: 3C 5A                                 cmp al,'Z'
+[  26]    017E: 76 13                                 jbe chu
+[  27]    0180: 3C 61                                 cmp al,'a'
+[  28]    0182: 72 06                                 jb khac
+[  29]    0184: 3C 7A                                 cmp al,'z'
+[  30]    0186: 72 0B                                 jb chu
+[  31]        :                                       
+[  32]    0188: EB 00                                 jmp khac
+[  33]        :                                       
+[  34]    018A:                                       khac:
+[  35]    018A: B4 09                                 mov ah,9
+[  36]    018C: BA 15 00                              lea dx,TBKhac
+[  37]    018F: CD 21                                 int 21h
+[  38]    0191: EB 10                                 jmp exit
+[  39]    0193:                                       chu:
+[  40]    0193: B4 09                                 mov ah,9
+[  41]    0195: BA 2E 00                              lea dx,TBChu
+[  42]    0198: CD 21                                 int 21h
+[  43]    019A: EB 07                                 jmp exit
+[  44]    019C:                                       so:
+[  45]    019C: B4 09                                 mov ah,9
+[  46]    019E: BA 44 00                              lea dx,TBSo
+[  47]    01A1: CD 21                                 int 21h
+[  48]    01A3:                                       exit:
+[  49]    01A3: B4 4C                                 mov ah,4ch
+[  50]    01A5: CD 21                                 int 21h
+[  51]        :                                       end
+[  52]        :                                       
+[  53]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: A7      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: 58      -   check sum (l.byte)
+0013: 56      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 16      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 16      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

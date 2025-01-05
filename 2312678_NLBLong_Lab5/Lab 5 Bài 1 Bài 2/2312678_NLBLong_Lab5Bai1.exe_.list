@@ -1,0 +1,114 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+2312678_NLBLong_Lab5Bai1.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 9/21/2024  --  5:35:46 PM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       .stack 100h
+[   3]        :                                       .data
+[   4]    0100: 0A 0D 4E 68 61 70 20 73 6F 20 6E 68   Tbao db 10,13,'Nhap so nhi phan (toi da 16 bit): $'
+                69 20 70 68 61 6E 20 28 74 6F 69 20 
+                64 61 20 31 36 20 62 69 74 29 3A 20 
+                24                                  
+[   5]    0125: 0A 0D 53 6F 20 6E 68 69 20 70 68 61   KQ db 10,13,'So nhi phan da nhap: $'
+                6E 20 64 61 20 6E 68 61 70 3A 20 24 
+                                                    
+[   6]        :                                       .code
+[   7]    0140: B8 10 00                              mov ax, @data
+[   8]    0143: 8E D8                                 mov ds, ax
+[   9]        :                                       
+[  10]    0145: BB 00 00                              mov bx, 0
+[  11]    0148: B4 09                                 mov ah, 9
+[  12]    014A: BA 00 00                              lea dx, TBao
+[  13]    014D: CD 21                                 int 21h
+[  14]    014F:                                       input:
+[  15]    014F: B4 01                                 mov ah, 1
+[  16]    0151: CD 21                                 int 21h
+[  17]        :                                       
+[  18]    0153: 3C 0D                                 cmp al, 13
+[  19]    0155: 74 10                                 je end_input
+[  20]    0157: 3C 30                                 cmp al, '0'
+[  21]    0159: 7C F4                                 jl input
+[  22]    015B: 3C 31                                 cmp al, '1'
+[  23]    015D: 7F F0                                 jg input
+[  24]    015F: 2C 30                                 sub al, '0'
+[  25]    0161: D1 E3                                 shl bx, 1
+[  26]    0163: 0A D8                                 or bl, al
+[  27]    0165: EB E8                                 jmp input
+[  28]        :                                       
+[  29]    0167:                                       end_input:
+[  30]    0167: B4 09                                 mov ah, 9
+[  31]    0169: BA 25 00                              lea dx, KQ
+[  32]    016C: CD 21                                 int 21h
+[  33]        :                                       
+[  34]    016E: B9 10 00                              mov cx, 16
+[  35]    0171:                                       output:
+[  36]    0171: D1 C3                                 rol bx, 1
+[  37]    0173: 73 02                                 jnc output_0
+[  38]    0175: 72 08                                 jc output_1
+[  39]    0177:                                       output_0:
+[  40]    0177: B4 02                                 mov ah, 2
+[  41]    0179: B2 30                                 mov dl, '0'
+[  42]    017B: CD 21                                 int 21h
+[  43]    017D: EB 06                                 jmp output_next
+[  44]    017F:                                       output_1:
+[  45]    017F: B4 02                                 mov ah, 2
+[  46]    0181: B2 31                                 mov dl, '1'
+[  47]    0183: CD 21                                 int 21h
+[  48]    0185:                                       output_next:
+[  49]    0185: E2 EA                                 loop output
+[  50]        :                                       
+[  51]    0187: B4 4C                                 mov ah, 4ch
+[  52]    0189: CD 21                                 int 21h
+[  53]        :                                       end
+[  54]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 8B      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: 15      -   check sum (l.byte)
+0013: 4C      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 14      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 14      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

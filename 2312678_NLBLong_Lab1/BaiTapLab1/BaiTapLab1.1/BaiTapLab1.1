@@ -1,0 +1,22 @@
+.model small
+.stack 100h
+.data
+    CR EQU 13
+    LF EQU 10
+    Mess db CR,LF,'Hello, world!'
+    db CR,LF,'Hello, solar system!'
+    db CR,LF,'Hello, universe!$'
+.code
+    main proc
+    ; Dua du lieu vao thanh ghi DS
+        mov ax,@data
+        mov ds,ax
+    ; Hien thi Mess
+        mov ah,9
+        lea dx,Mess
+        int 21h
+    ; Exit to DOS
+        mov ah,4ch
+        int 21h
+        main endp
+end main

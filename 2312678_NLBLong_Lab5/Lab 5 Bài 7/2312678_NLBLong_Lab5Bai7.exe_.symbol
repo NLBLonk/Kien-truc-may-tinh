@@ -1,0 +1,20 @@
+< THE SYMBOL TABLE >  2312678_NLBLong_Lab5Bai7.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+TB1                      	00000     	1         	VAR       	data      
+TB2                      	00008     	1         	VAR       	data      
+TB3                      	00012     	1         	VAR       	data      
+NGAY                     	0001A     	1         	VAR       	data      
+THANG                    	0001B     	1         	VAR       	data      
+NAM                      	0001C     	2         	VAR       	data      
+CODE                     	00012     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+_NAM                     	0007A     	-1        	LABEL     	code      
+_XUATNAM                 	00086     	-1        	LABEL     	code      
+===================================================================================================
+[ 9/17/2024  --  6:34:06 PM ] 
+< END >
+ 

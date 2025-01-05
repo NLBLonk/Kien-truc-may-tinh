@@ -1,0 +1,154 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+2312678_NLBLong_Lab5Bai10.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 9/23/2024  --  11:39:51 PM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       .stack 100h
+[   3]        :                                       .data
+[   4]    0100: 00 00                                 length dw ?
+[   5]    0102: 00 00                                 width dw ?
+[   6]    0104: 00 00                                 area dw ?
+[   7]    0106: 00 00                                 perimeter dw ?
+[   8]    0108: 4E 68 61 70 20 63 68 69 65 75 20 64   TB1 db 'Nhap chieu dai: $'
+                61 69 3A 20 24                      
+[   9]    0119: 0A 0D 4E 68 61 70 20 63 68 69 65 75   TB2 db 10,13,'Nhap chieu rong: $'
+                20 72 6F 6E 67 3A 20 24             
+[  10]    012D: 0A 0D 44 69 65 6E 20 74 69 63 68 20   KQ1 db 10,13,'Dien tich cua hinh chu nhat: $'
+                63 75 61 20 68 69 6E 68 20 63 68 75 
+                20 6E 68 61 74 3A 20 24             
+[  11]    014D: 0A 0D 43 68 75 20 76 69 20 63 75 61   KQ2 db 10,13,'Chu vi cua hinh chu nhat: $'
+                20 68 69 6E 68 20 63 68 75 20 6E 68 
+                61 74 3A 20 24                      
+[  12]        :                                       .code
+[  13]    0170: B8 10 00                              mov ax, @data
+[  14]    0173: 8E D8                                 mov ds, ax
+[  15]        :                                       
+[  16]        :                                       ; Nhap chieu dai
+[  17]    0175: B4 09                                 mov ah, 9
+[  18]    0177: BA 08 00                              lea dx, TB1
+[  19]    017A: CD 21                                 int 21h
+[  20]    017C: E8 46 00                              call input_number
+[  21]    017F: A3 00 00                              mov length, ax
+[  22]        :                                       
+[  23]        :                                       ; Nhap chieu rong
+[  24]    0182: B4 09                                 mov ah, 9
+[  25]    0184: BA 19 00                              lea dx, TB2
+[  26]    0187: CD 21                                 int 21h
+[  27]    0189: E8 39 00                              call input_number
+[  28]    018C: A3 02 00                              mov width, ax
+[  29]        :                                       
+[  30]        :                                       ; Tinh dien tich (area = length * width)
+[  31]    018F: A1 00 00                              mov ax, length    ; Nap chieu dài vào AX
+[  32]    0192: 8B 1E 02 00                           mov bx, width     ; Nap chieu rong vào BX
+[  33]    0196: F7 E3                                 mul bx            ; Tinh dien tich (AX = AX * BX)
+[  34]    0198: A3 04 00                              mov area, ax      ; Luu ket qua vào bien area
+[  35]        :                                       
+[  36]        :                                       ; Tinh chu vi (perimeter = 2 * (length + width))
+[  37]    019B: A1 00 00                              mov ax, length    ; Nap chieu dài vào AX
+[  38]    019E: 03 06 02 00                           add ax, width     ; AX = length + width
+[  39]    01A2: D1 E0                                 shl ax, 1         ; Nhan doi (chu vi = 2 * (length + width))
+[  40]    01A4: A3 06 00                              mov perimeter, ax ; Luu ket qua vào bien perimeter
+[  41]        :                                       
+[  42]        :                                       ; Hien thi ket qua dien tich
+[  43]    01A7: B4 09                                 mov ah, 9
+[  44]    01A9: BA 2D 00                              lea dx, KQ1
+[  45]    01AC: CD 21                                 int 21h
+[  46]    01AE: A1 04 00                              mov ax, area
+[  47]    01B1: E8 1C 00                              call print_number
+[  48]        :                                       
+[  49]        :                                       ; Hien thi ket qua chu vi
+[  50]    01B4: B4 09                                 mov ah, 9
+[  51]    01B6: BA 4D 00                              lea dx, KQ2
+[  52]    01B9: CD 21                                 int 21h
+[  53]    01BB: A1 06 00                              mov ax, perimeter
+[  54]    01BE: E8 0F 00                              call print_number
+[  55]        :                                       
+[  56]    01C1: B4 4C                                 mov ah, 4ch
+[  57]    01C3: CD 21                                 int 21h
+[  58]        :                                       
+[  59]        :                                       ; Hàm nhap so
+[  60]    01C5:                                       input_number proc
+[  61]    01C5: 33 C0                                 xor ax, ax        ; Xoa AX
+[  62]    01C7: B4 01                                 mov ah, 1
+[  63]    01C9: CD 21                                 int 21h
+[  64]    01CB: 2C 30                                 sub al, 30h       ; Chuyen doi tu ma ASCII sang so
+[  65]    01CD: B4 00                                 mov ah, 0         ; Xoa phan cao cua AX
+[  66]    01CF: C3                                    ret
+[  67]        :                                       input_number endp
+[  68]        :                                       
+[  69]        :                                       ; Ham in so ra man hinh
+[  70]    01D0:                                       print_number proc
+[  71]    01D0: BB 0A 00                              mov bx, 10        ; Chia cho 10 de lay tung chu so
+[  72]    01D3: 33 C9                                 xor cx, cx        ; Xoa CX (luu cac chu so)
+[  73]        :                                       
+[  74]    01D5:                                       print_loop:
+[  75]    01D5: 33 D2                                 xor dx, dx        ; Xoa DX
+[  76]    01D7: F7 F3                                 div bx            ; Chia AX cho 10
+[  77]    01D9: 52                                    push dx           ; Luu phan du (chu so) vào stack
+[  78]    01DA: 41                                    inc cx            ; Tang bo dem chu so
+[  79]    01DB: 85 C0                                 test ax, ax       ; Kiem tra neu AX = 0 thi dung
+[  80]    01DD: 75 F6                                 jnz print_loop    ; Neu AX khac 0, tiep tuc chia
+[  81]        :                                       
+[  82]    01DF:                                       print_digits:
+[  83]    01DF: 5A                                    pop dx            ; Lay chu so tu stack
+[  84]    01E0: 80 C2 30                              add dl, 30h       ; Chuyen tu so sang ky tu ASCII
+[  85]    01E3: B4 02                                 mov ah, 2
+[  86]    01E5: CD 21                                 int 21h
+[  87]    01E7: E2 F6                                 loop print_digits
+[  88]    01E9: C3                                    ret
+[  89]        :                                       print_number endp
+[  90]        :                                       
+[  91]        :                                       end
+[  92]        :                                       
+[  93]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: EA      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: D1      -   check sum (l.byte)
+0013: AE      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 17      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 17      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

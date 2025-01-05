@@ -1,0 +1,27 @@
+< THE SYMBOL TABLE >  2312678_NLBLong_Lab5Bai8.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+HOUR                     	00000     	1         	VAR       	data      
+MINUTE                   	00008     	1         	VAR       	data      
+SECOND                   	00011     	1         	VAR       	data      
+CODE                     	00012     	-5        	SEGMENT   	(ITSELF)  
+PRINT_NUM                	0003F     	-1        	NEAR      	code      
+NOT_ZERO_LOC1TMP         	00050     	-1        	LABEL     	code      
+POSITIVE_LOC1TMP         	0005F     	-1        	LABEL     	code      
+PRINTED_LOC1TMP          	00062     	-1        	LABEL     	code      
+SKIP_PROC_PRINT_NUM_LOC1TMP	00065     	-1        	LABEL     	code      
+PRINT_NUM_UNS            	00067     	-1        	NEAR      	code      
+BEGIN_PRINT_LOC2TMP      	00076     	-1        	LABEL     	code      
+CALC_LOC2TMP             	00084     	-1        	LABEL     	code      
+SKIP_LOC2TMP             	00098     	-1        	LABEL     	code      
+PRINT_ZERO_LOC2TMP       	000A8     	-1        	LABEL     	code      
+END_PRINT_LOC2TMP        	000B0     	-1        	LABEL     	code      
+TEN_LOC2TMP              	000B5     	2         	VAR       	code      
+SKIP_PROC_PRINT_NUM_UNS_LOC3TMP	000B7     	-1        	LABEL     	code      
+===================================================================================================
+[ 9/23/2024  --  12:25:21 PM ] 
+< END >
+ 

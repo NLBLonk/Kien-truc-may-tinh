@@ -1,0 +1,122 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+2312678_NLBLong_Lab3Bai1.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 9/4/2024  --  1:35:23 PM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       .stack 100h
+[   3]        :                                       .data
+[   4]    0100: 0A 0D 42 61 79 20 67 69 6F 20 6C 61   tb1 db 10,13, 'Bay gio la sang,chieu hay toi? $'
+                20 73 61 6E 67 2C 63 68 69 65 75 20 
+                68 61 79 20 74 6F 69 3F 20 24       
+[   5]    0122: 0A 0D 43 68 61 6F 20 62 75 6F 69 20   kq1 db 10,13, 'Chao buoi sang!$'
+                73 61 6E 67 21 24                   
+[   6]    0134: 0A 0D 43 68 61 6F 20 62 75 6F 69 20   kq2 db 10,13, 'Chao buoi chieu!$'
+                63 68 69 65 75 21 24                
+[   7]    0147: 0A 0D 43 68 61 6F 20 62 75 6F 69 20   kq3 db 10,13, 'Chao buoi toi!$'
+                74 6F 69 21 24                      
+[   8]        :                                       .code
+[   9]    0160: B8 10 00                              mov ax, @DATA
+[  10]    0163: 8E D8                                 mov ds, ax
+[  11]    0165:                                       input:
+[  12]    0165: B4 09                                 mov ah,9
+[  13]    0167: BA 00 00                              lea dx,tb1
+[  14]    016A: CD 21                                 int 21h
+[  15]        :                                       
+[  16]    016C: B4 01                                 mov ah,1
+[  17]    016E: CD 21                                 int 21h
+[  18]        :                                       
+[  19]    0170: 3C 53                                 cmp al,'S'
+[  20]    0172: 74 16                                 je sang
+[  21]    0174: 3C 73                                 cmp al,'s'
+[  22]    0176: 74 12                                 je sang
+[  23]        :                                       
+[  24]    0178: 3C 43                                 cmp al,'C'
+[  25]    017A: 74 17                                 je chieu
+[  26]    017C: 3C 63                                 cmp al,'c'
+[  27]    017E: 74 13                                 je chieu
+[  28]        :                                       
+[  29]    0180: 3C 54                                 cmp al,'T'
+[  30]    0182: 74 16                                 je toi
+[  31]    0184: 3C 74                                 cmp al,'t'
+[  32]    0186: 74 12                                 je toi
+[  33]        :                                       
+[  34]    0188: EB DB                                 jmp input
+[  35]        :                                       
+[  36]        :                                       
+[  37]    018A:                                       sang:
+[  38]    018A: B4 09                                 mov ah,9
+[  39]    018C: BA 22 00                              lea dx,kq1
+[  40]    018F: CD 21                                 int 21h
+[  41]    0191: EB 0E                                 jmp exit
+[  42]        :                                       
+[  43]    0193:                                       chieu:
+[  44]    0193: B4 09                                 mov ah,9
+[  45]    0195: BA 34 00                              lea dx,kq2
+[  46]    0198: CD 21                                 int 21h
+[  47]        :                                       
+[  48]    019A:                                       toi:
+[  49]    019A: B4 09                                 mov ah,9
+[  50]    019C: BA 47 00                              lea dx,kq3
+[  51]    019F: CD 21                                 int 21h
+[  52]        :                                       
+[  53]    01A1:                                       exit:
+[  54]    01A1: B4 4C                                 mov ah,4ch
+[  55]    01A3: CD 21                                 int 21h
+[  56]        :                                       end
+[  57]        :                                       
+[  58]        :                                       
+[  59]        :                                       
+[  60]        :                                       
+[  61]        :                                       
+[  62]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: A5      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: D8      -   check sum (l.byte)
+0013: 7E      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 16      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 16      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

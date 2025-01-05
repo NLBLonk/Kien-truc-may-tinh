@@ -1,0 +1,159 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+2312678_NLBLong_Lab5Bai7.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 9/17/2024  --  6:34:06 PM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       .stack 100h
+[   3]        :                                       .data
+[   4]    0100: 4E 67 E0 79 3A 20 24 20               TB1 db 'Ngày: $ '
+[   5]    0108: 20 54 68 61 6E 67 3A 20 24 20         TB2 db ' Thang: $ '
+[   6]    0112: 20 4E 61 6D 3A 20 24 20               TB3 db ' Nam: $ '
+[   7]    011A: 00                                    ngay DB ?
+[   8]    011B: 00                                    thang DB ?
+[   9]    011C: 00 00                                 nam DW ?
+[  10]        :                                       .code
+[  11]    0120:                                       main proc
+[  12]    0120: B8 10 00                              mov ax, @data
+[  13]    0123: 8E D8                                 mov ds, ax
+[  14]        :                                       
+[  15]        :                                       ; Lay thoi gian hien tai
+[  16]    0125: B4 2A                                 mov ah, 2Ah
+[  17]    0127: CD 21                                 int 21h
+[  18]        :                                       
+[  19]    0129: 32 E4                                 xor ah,ah
+[  20]    012B: 88 16 1A 00                           mov ngay,dl
+[  21]    012F: 88 36 1B 00                           mov thang,dh
+[  22]    0133: 89 0E 1C 00                           mov nam,cx
+[  23]        :                                       
+[  24]        :                                       ; Xuat ngày
+[  25]    0137: B4 09                                 mov ah, 9
+[  26]    0139: BA 00 00                              lea dx, TB1
+[  27]    013C: CD 21                                 int 21h
+[  28]        :                                       
+[  29]    013E: A0 1A 00                              mov al,ngay
+[  30]    0141: 32 E4                                 xor ah,ah
+[  31]    0143: B3 0A                                 mov bl,10
+[  32]    0145: F6 F3                                 div bl
+[  33]        :                                       
+[  34]    0147: 80 C4 30                              add ah,30h
+[  35]    014A: 04 30                                 add al,30h
+[  36]    014C: 8A FC                                 mov bh,ah
+[  37]        :                                       
+[  38]    014E: B4 02                                 mov ah,02h
+[  39]    0150: 8A D0                                 mov dl,al
+[  40]    0152: CD 21                                 int 21h
+[  41]    0154: B4 02                                 mov ah,02h
+[  42]    0156: 8A D7                                 mov dl,bh
+[  43]    0158: CD 21                                 int 21h
+[  44]        :                                       
+[  45]        :                                       ; Xuat thang
+[  46]    015A: B4 09                                 mov ah, 9
+[  47]    015C: BA 08 00                              lea dx, TB2
+[  48]    015F: CD 21                                 int 21h
+[  49]        :                                       
+[  50]    0161: A0 1B 00                              mov al,thang
+[  51]    0164: 32 E4                                 xor ah,ah
+[  52]    0166: B3 0A                                 mov bl,10
+[  53]    0168: F6 F3                                 div bl
+[  54]        :                                       
+[  55]    016A: 80 C4 30                              add ah,30h
+[  56]    016D: 04 30                                 add al,30h
+[  57]    016F: 8A FC                                 mov bh,ah
+[  58]        :                                       
+[  59]    0171: B4 02                                 mov ah,02h
+[  60]    0173: 8A D0                                 mov dl,al
+[  61]    0175: CD 21                                 int 21h
+[  62]    0177: B4 02                                 mov ah,02h
+[  63]    0179: 8A D7                                 mov dl,bh
+[  64]    017B: CD 21                                 int 21h
+[  65]        :                                       
+[  66]    017D: A1 1C 00                              mov ax,nam
+[  67]    0180: BB 0A 00                              mov bx,10
+[  68]        :                                       
+[  69]    0183: 33 C9                                 xor cx,cx
+[  70]    0185: B9 04 00                              mov cx,4
+[  71]        :                                       
+[  72]        :                                       ; Xuat nam
+[  73]    0188: B4 09                                 mov ah, 9
+[  74]    018A: BA 12 00                              lea dx, TB3
+[  75]    018D: CD 21                                 int 21h
+[  76]        :                                       
+[  77]    018F: A1 1C 00                              mov ax,nam
+[  78]    0192: BB 0A 00                              mov bx,10
+[  79]        :                                       
+[  80]    0195: 33 C9                                 xor cx,cx
+[  81]    0197: B9 04 00                              mov cx,4
+[  82]        :                                       
+[  83]    019A:                                       _NAM:
+[  84]    019A: 33 D2                                 xor dx,dx
+[  85]    019C: F7 F3                                 div bx
+[  86]    019E: 52                                    push dx
+[  87]    019F: E2 F9                                 loop _NAM
+[  88]        :                                       
+[  89]    01A1: 33 C9                                 xor cx,cx
+[  90]    01A3: B9 04 00                              mov cx,4
+[  91]        :                                       
+[  92]    01A6:                                       _XUATNAM:
+[  93]    01A6: 5A                                    pop dx
+[  94]    01A7: 80 C2 30                              add dl,30h
+[  95]    01AA: B4 02                                 mov ah,02h
+[  96]    01AC: CD 21                                 int 21h
+[  97]        :                                       
+[  98]    01AE: E2 F6                                 loop _XUATNAM
+[  99]        :                                       ; Ket thuc chuong trinh
+[ 100]    01B0: B4 4C                                 mov ah, 4ch
+[ 101]    01B2: CD 21                                 int 21h
+[ 102]        :                                       main endp
+[ 103]        :                                       end
+[ 104]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: B4      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: 9A      -   check sum (l.byte)
+0013: AF      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 12      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 12      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

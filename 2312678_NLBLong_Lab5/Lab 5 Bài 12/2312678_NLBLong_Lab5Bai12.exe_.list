@@ -1,0 +1,174 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+2312678_NLBLong_Lab5Bai12.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 9/24/2024  --  10:40:43 PM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       .stack 100h
+[   3]        :                                       .data
+[   4]    0100: 4E 68 61 70 20 73 6F 20 74 68 75 20   TB1 db 'Nhap so thu nhat (0-9): $'
+                6E 68 61 74 20 28 30 2D 39 29 3A 20 
+                24                                  
+[   5]    0119: 0A 0D 4E 68 61 70 20 73 6F 20 74 68   TB2 db 10,13, 'Nhap so thu hai (0-9): $'
+                75 20 68 61 69 20 28 30 2D 39 29 3A 
+                20 24                               
+[   6]    0133: 0A 0D 54 6F 6E 67 20 63 75 61 20 68   KQTong  db 10,13, 'Tong cua hai so: $'
+                61 69 20 73 6F 3A 20 24             
+[   7]    0147: 0A 0D 48 69 65 75 20 63 75 61 20 68   KQHieu db 10,13, 'Hieu cua hai so: $'
+                61 69 20 73 6F 3A 20 24             
+[   8]    015B: 0A 0D 54 69 63 68 20 63 75 61 20 68   KQTich db 10,13, 'Tich cua hai so: $'
+                61 69 20 73 6F 3A 20 24             
+[   9]    016F: 0A 0D 54 68 75 6F 6E 67 20 63 75 61   KQThuong db 10,13, 'Thuong cua hai so: $'
+                20 68 61 69 20 73 6F 3A 20 24       
+[  10]    0185: 00 00                                 num1 dw ?
+[  11]    0187: 00 00                                 num2 dw ?
+[  12]    0189: 00 00                                 result dw ?
+[  13]        :                                       .code
+[  14]    0190: B8 10 00                              mov ax, @data
+[  15]    0193: 8E D8                                 mov ds, ax
+[  16]        :                                       
+[  17]        :                                       ; Nhap so thu nhat
+[  18]    0195: BA 00 00                              lea dx, TB1
+[  19]    0198: B4 09                                 mov ah, 09h
+[  20]    019A: CD 21                                 int 21h
+[  21]    019C: E8 66 00                              call getNumber
+[  22]    019F: A3 85 00                              mov num1, ax
+[  23]        :                                       
+[  24]        :                                       ; Nhap so thu hai
+[  25]    01A2: BA 19 00                              lea dx, TB2
+[  26]    01A5: B4 09                                 mov ah, 09h
+[  27]    01A7: CD 21                                 int 21h
+[  28]    01A9: E8 59 00                              call getNumber
+[  29]    01AC: A3 87 00                              mov num2, ax
+[  30]        :                                       
+[  31]        :                                       ; Tinh tong
+[  32]    01AF: A1 85 00                              mov ax, num1
+[  33]    01B2: 03 06 87 00                           add ax, num2
+[  34]    01B6: A3 89 00                              mov result, ax
+[  35]    01B9: BA 33 00                              lea dx, KQTong
+[  36]    01BC: B4 09                                 mov ah, 09h
+[  37]    01BE: CD 21                                 int 21h
+[  38]    01C0: E8 4B 00                              call printKQ
+[  39]        :                                       
+[  40]        :                                       ; Tinh hieu
+[  41]    01C3: A1 85 00                              mov ax, num1
+[  42]    01C6: 2B 06 87 00                           sub ax, num2
+[  43]    01CA: A3 89 00                              mov result, ax
+[  44]    01CD: BA 47 00                              lea dx, KQHieu
+[  45]    01D0: B4 09                                 mov ah, 09h
+[  46]    01D2: CD 21                                 int 21h
+[  47]    01D4: E8 37 00                              call printKQ
+[  48]        :                                       
+[  49]        :                                       ; Tinh tich
+[  50]    01D7: A1 85 00                              mov ax, num1
+[  51]    01DA: F7 26 87 00                           mul num2
+[  52]    01DE: A3 89 00                              mov result, ax
+[  53]    01E1: BA 5B 00                              lea dx, KQTich
+[  54]    01E4: B4 09                                 mov ah, 09h
+[  55]    01E6: CD 21                                 int 21h
+[  56]    01E8: E8 23 00                              call printKQ
+[  57]        :                                       
+[  58]        :                                       ; Tinh thuong
+[  59]    01EB: A1 85 00                              mov ax, num1
+[  60]    01EE: 33 D2                                 xor dx, dx     ; Xoa thanh ghi DX de tranh loi khi chia
+[  61]    01F0: F7 36 87 00                           div num2
+[  62]    01F4: A3 89 00                              mov result, ax
+[  63]    01F7: BA 6F 00                              lea dx, KQThuong
+[  64]    01FA: B4 09                                 mov ah, 09h
+[  65]    01FC: CD 21                                 int 21h
+[  66]    01FE: E8 0D 00                              call printKQ
+[  67]        :                                       
+[  68]        :                                       
+[  69]    0201: B4 4C                                 mov ah, 4Ch
+[  70]    0203: CD 21                                 int 21h
+[  71]        :                                       
+[  72]        :                                       ; Ham nhap so
+[  73]    0205:                                       getNumber proc
+[  74]    0205: B4 01                                 mov ah, 01h
+[  75]    0207: CD 21                                 int 21h
+[  76]    0209: 2C 30                                 sub al, '0'  ; Chuyen ki tu so thành gia tri so
+[  77]    020B: B4 00                                 mov ah, 0
+[  78]    020D: C3                                    ret
+[  79]        :                                       getNumber endp
+[  80]        :                                       
+[  81]        :                                       ; Ham in ket qua
+[  82]    020E:                                       printKQ proc
+[  83]    020E: A1 89 00                              mov ax, result
+[  84]    0211: E8 01 00                              call printNum
+[  85]    0214: C3                                    ret
+[  86]        :                                       printKQ endp
+[  87]        :                                       
+[  88]        :                                       ; Hàm in so
+[  89]    0215:                                       printNum proc
+[  90]    0215: B9 00 00                              mov cx, 0     ; Dat lai bo dem
+[  91]    0218: BB 0A 00                              mov bx, 10    ; Co so 10 de chuyen doi so
+[  92]    021B:                                       convertLoop:
+[  93]    021B: 33 D2                                 xor dx, dx    ; Xoa DX
+[  94]    021D: F7 F3                                 div bx        ; Chia AX cho 10
+[  95]    021F: 52                                    push dx       ; Luu phan du (chu so)
+[  96]    0220: 41                                    inc cx        ; Tang bo dem
+[  97]    0221: 85 C0                                 test ax, ax   ; Kiem tra neu AX = 0
+[  98]    0223: 75 F6                                 jnz convertLoop
+[  99]        :                                       
+[ 100]    0225:                                       printLoop:
+[ 101]    0225: 5A                                    pop dx
+[ 102]    0226: 80 C2 30                              add dl, '0'   ; Chuyen thanh ky tu
+[ 103]    0229: B4 02                                 mov ah, 02h   ; In ki tu ra man hinh
+[ 104]    022B: CD 21                                 int 21h
+[ 105]    022D: E2 F6                                 loop printLoop
+[ 106]    022F: C3                                    ret
+[ 107]        :                                       printNum endp
+[ 108]        :                                       
+[ 109]        :                                       end
+[ 110]        :                                       
+[ 111]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 30      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 03      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: A4      -   check sum (l.byte)
+0013: 53      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 19      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 19      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

@@ -1,0 +1,25 @@
+< THE SYMBOL TABLE >  2312678_NLBLong_Lab5Bai12.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+TB1                      	00000     	1         	VAR       	data      
+TB2                      	00019     	1         	VAR       	data      
+KQTONG                   	00033     	1         	VAR       	data      
+KQHIEU                   	00047     	1         	VAR       	data      
+KQTICH                   	0005B     	1         	VAR       	data      
+KQTHUONG                 	0006F     	1         	VAR       	data      
+NUM1                     	00085     	2         	VAR       	data      
+NUM2                     	00087     	2         	VAR       	data      
+RESULT                   	00089     	2         	VAR       	data      
+CODE                     	00019     	-5        	SEGMENT   	(ITSELF)  
+GETNUMBER                	00075     	-1        	NEAR      	code      
+PRINTKQ                  	0007E     	-1        	NEAR      	code      
+PRINTNUM                 	00085     	-1        	NEAR      	code      
+CONVERTLOOP              	0008B     	-1        	LABEL     	code      
+PRINTLOOP                	00095     	-1        	LABEL     	code      
+===================================================================================================
+[ 9/24/2024  --  10:40:43 PM ] 
+< END >
+ 

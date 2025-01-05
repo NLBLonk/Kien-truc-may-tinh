@@ -1,0 +1,143 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+2312678_NLBLong_Lab4Bai2.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 9/11/2024  --  2:52:17 PM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       .stack 100h
+[   3]        :                                       .data
+[   4]    0100: 0A 0D 4E 68 61 70 20 6D 6F 74 20 6B   TBao DB 10,13,'Nhap mot ky tu (hoac ESC): $'
+                79 20 74 75 20 28 68 6F 61 63 20 45 
+                53 43 29 3A 20 24                   
+[   5]    011E: 0A 0D 4B 79 20 74 75 20 64 61 20 6E   KQ1 DB 10,13,'Ky tu da nhap la chu $'
+                68 61 70 20 6C 61 20 63 68 75 20 24 
+                                                    
+[   6]    0136: 0A 0D 4B 79 20 74 75 20 64 61 20 6E   KQ2 DB 10,13,'Ky tu da nhap la so $'
+                68 61 70 20 6C 61 20 73 6F 20 24    
+[   7]    014D: 0A 0D 4B 79 20 74 75 20 64 61 20 6E   KQ3 DB 10,13,'Ky tu da nhap la chu/so $'
+                68 61 70 20 6C 61 20 63 68 75 2F 73 
+                6F 20 24                            
+[   8]    0168: 0A 0D 42 61 6D 20 70 68 69 6D 20 62   KThuc DB 10,13,'Bam phim bat ky de thoat chuong trinh $'
+                61 74 20 6B 79 20 64 65 20 74 68 6F 
+                61 74 20 63 68 75 6F 6E 67 20 74 72 
+                69 6E 68 20 24                      
+[   9]        :                                       
+[  10]    0191: 00                                    kytu db ?
+[  11]        :                                       .code
+[  12]    01A0: B8 10 00                              mov ax,@data
+[  13]    01A3: 8E D8                                 mov ds,ax
+[  14]        :                                       
+[  15]    01A5: B4 09                                 mov ah,9
+[  16]    01A7: BA 00 00                              lea dx,TBao
+[  17]    01AA: CD 21                                 int 21h
+[  18]        :                                       
+[  19]    01AC: E8 03 00                              call xuly
+[  20]        :                                       
+[  21]    01AF: E8 3E 00                              call thoatCT
+[  22]        :                                       
+[  23]    01B2:                                       xuly proc
+[  24]    01B2:                                       input:
+[  25]    01B2: B4 01                                 mov ah,1
+[  26]    01B4: CD 21                                 int 21h
+[  27]        :                                       
+[  28]    01B6: 3C 0D                                 cmp al,0Dh
+[  29]    01B8: 74 35                                 je exit
+[  30]        :                                       
+[  31]    01BA: 3C 30                                 cmp al,'0'
+[  32]    01BC: 72 26                                 jb khac
+[  33]    01BE: 3C 39                                 cmp al,'9'
+[  34]    01C0: 76 19                                 jbe so
+[  35]    01C2: 3C 41                                 cmp al,'A'
+[  36]    01C4: 72 1E                                 jb khac
+[  37]    01C6: 3C 5A                                 cmp al,'Z'
+[  38]    01C8: 76 08                                 jbe chu
+[  39]    01CA: 3C 61                                 cmp al,'a'
+[  40]    01CC: 72 16                                 jb khac
+[  41]    01CE: 3C 7A                                 cmp al,'z'
+[  42]    01D0: 76 00                                 jbe chu
+[  43]        :                                       
+[  44]    01D2:                                       chu:
+[  45]    01D2: B4 09                                 mov ah,9
+[  46]    01D4: BA 1E 00                              lea dx,KQ1
+[  47]    01D7: CD 21                                 int 21h
+[  48]    01D9: EB 12                                 jmp continue
+[  49]    01DB:                                       so:
+[  50]    01DB: B4 09                                 mov ah,9
+[  51]    01DD: BA 36 00                              lea dx,KQ2
+[  52]    01E0: CD 21                                 int 21h
+[  53]    01E2: EB 09                                 jmp continue
+[  54]    01E4:                                       khac:
+[  55]    01E4: B4 09                                 mov ah,9
+[  56]    01E6: BA 4D 00                              lea dx,KQ3
+[  57]    01E9: CD 21                                 int 21h
+[  58]    01EB: EB 00                                 jmp continue
+[  59]    01ED:                                       continue:
+[  60]    01ED: EB C3                                 jmp input
+[  61]    01EF:                                       exit:
+[  62]    01EF: C3                                    RET
+[  63]        :                                       xuly endp
+[  64]    01F0:                                       thoatCT proc
+[  65]    01F0: B4 09                                 mov ah,9
+[  66]    01F2: BA 68 00                              lea dx,KThuc
+[  67]    01F5: CD 21                                 int 21h
+[  68]        :                                       
+[  69]    01F7: B4 07                                 mov ah,7
+[  70]    01F9: CD 21                                 int 21h
+[  71]        :                                       
+[  72]    01FB: B4 4C                                 mov ah,4ch
+[  73]    01FD: CD 21                                 int 21h
+[  74]    01FF: C3                                    RET
+[  75]        :                                       thoatCT endp
+[  76]        :                                       end
+[  77]        :                                       
+[  78]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 00      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: A2      -   check sum (l.byte)
+0013: 99      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 1A      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 1A      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

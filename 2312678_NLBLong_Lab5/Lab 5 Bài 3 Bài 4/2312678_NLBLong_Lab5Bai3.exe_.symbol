@@ -1,0 +1,20 @@
+< THE SYMBOL TABLE >  2312678_NLBLong_Lab5Bai3.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+TBAO                     	00000     	1         	VAR       	data      
+KQ                       	0002B     	1         	VAR       	data      
+CODE                     	00015     	-5        	SEGMENT   	(ITSELF)  
+INPUT                    	00010     	-1        	LABEL     	code      
+LETTER                   	00020     	-1        	LABEL     	code      
+SHIFT                    	00022     	-1        	LABEL     	code      
+END_INPUT                	00028     	-1        	LABEL     	code      
+OUTPUTHEX                	00032     	-1        	LABEL     	code      
+OUTPUT_LETTER            	0004A     	-1        	LABEL     	code      
+EXIT                     	00051     	-1        	LABEL     	code      
+===================================================================================================
+[ 9/21/2024  --  5:54:35 PM ] 
+< END >
+ 

@@ -1,0 +1,16 @@
+< THE SYMBOL TABLE >  BaiTapLab1_4.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+TBAO1                    	00000     	1         	VAR       	data      
+TBAO2                    	00017     	1         	VAR       	data      
+TBAO3                    	0002D     	1         	VAR       	data      
+TBAO4                    	0003D     	1         	VAR       	data      
+CODE                     	00016     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+===================================================================================================
+[ 8/13/2024  --  9:29:21 PM ] 
+< END >
+ 
